@@ -3,11 +3,17 @@ import { toast } from 'react-toastify'
 import { reset, updatePassword } from '../../../redux/auth/authSlice'
 import { Password } from '../../../types/authType'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import { styled } from '@mui/material/styles'
-import Button, { ButtonProps } from '@mui/material/Button'
+
+import {
+  Box,
+  TextField,
+  InputLabel,
+  styled,
+  Button,
+  ButtonProps,
+  FormGroup,
+  FormControl,
+} from '@mui/material'
 import { purple } from '@mui/material/colors'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 import IconButton from '@mui/material/IconButton'
@@ -15,7 +21,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 // Importing Images
-import Background from '../../../assets/images/login-bg.png'
+import Background from '../../../assets/images/login-bg.jpg'
 import ChartImg from '../../../assets/images/svg/Chart.svg'
 import PieChartImg from '../../../assets/images/svg/PieCharts.svg'
 import SalesImg from '../../../assets/images/svg/Sales.svg'
@@ -182,131 +188,128 @@ const SetPassword = () => {
       </Box>
       {/* ACCOUNT SCREEN ANIMATION END */}
       {/* ACCOUNT FORM START */}
-      <Box
-        sx={{ flexGrow: 1 }}
-        id="login-form"
-        className="account__form login-form"
-      >
+      <Box sx={{ flexGrow: 1 }} className="account__form login-form">
         <div className="form__inner">
           <Box sx={{ width: 1 }} className="account__form__header">
             <h3 className="title">{t<string>('setPassword')}</h3>
             <p className="sub__title">{t<string>('generatePassword')}</p>
           </Box>
           <Box sx={{ width: 1 }} className="account__form__error">
-            <p className="error__msg">{message.length > 1 ? message : ''}</p>
+            <p className="error__msg">{message && message}</p>
           </Box>
           <Box sx={{ flexGrow: 1 }} className="account__form__body">
             <form onSubmit={handleSubmit} action="#" method="post">
-              <Box
-                className="input-wrapper"
-                id="password-box"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  position: 'relative',
-                  width: 1,
-                  margin: '20px 0px',
-                }}
-              >
-                <InputLabel htmlFor="username" className="label__icon">
-                  <LockOpenIcon id="unlock-icon" />
-                </InputLabel>
-                <TextField
-                  required
-                  id="password"
-                  label={t<string>('password')}
-                  variant="standard"
-                  sx={{ width: 1 }}
-                  name="password"
-                  type="password"
-                  data-testid="password-element"
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-              </Box>
-
-              <Box
-                className="input-wrapper password-checkHide"
-                id="confirm-password-box"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  position: 'relative',
-                  width: 1,
-                  margin: '20px 0px',
-                }}
-              >
-                <InputLabel htmlFor="confirmPassword" className="label__icon">
-                  <LockOpenIcon id="unlock-icon" />
-                </InputLabel>
-                <TextField
-                  required
-                  id="confirmPassword"
-                  label={t<string>('confirmPassword')}
-                  variant="standard"
-                  sx={{ width: 1 }}
-                  type={values.showPassword ? 'text' : 'password'}
-                  autoComplete="false"
-                  name="password"
-                  data-testid="confirm-password-element"
-                  value={confirmPassword}
-                  onChange={handleConfirmPasswordChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          className="password-toggle"
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {values.showPassword ? (
-                            <VisibilityOff />
-                          ) : (
-                            <Visibility />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+              <FormGroup>
+                <FormControl
+                  className="input-wrapper"
+                  id="password-box"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    position: 'relative',
+                    width: 1,
+                    margin: '20px 0px',
                   }}
-                />
-              </Box>
-
-              <Box
-                className="input-wrapper password-checkHide"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  position: 'relative',
-                  width: 1,
-                  margin: '20px 0px',
-                }}
-              >
-                <a href="/forgotpassword" className="forgot-password">
-                  {t<string>('forgotPassword')}
-                </a>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  position: 'relative',
-                  width: 1,
-                  marginTop: '50px',
-                }}
-              >
-                <ColorButton
-                  variant="contained"
-                  id="btn-enable-style"
-                  type="submit"
-                  name="submit"
-                  disabled={open}
-                  className="customBtn-01"
                 >
-                  {t<string>('done')}
-                </ColorButton>
-              </Box>
+                  <InputLabel htmlFor="username" className="label__icon">
+                    <LockOpenIcon id="unlock-icon" />
+                  </InputLabel>
+                  <TextField
+                    required
+                    id="password"
+                    label={t<string>('password')}
+                    variant="standard"
+                    sx={{ width: 1 }}
+                    name="password"
+                    type="password"
+                    data-testid="password-element"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </FormControl>
+
+                <FormControl
+                  className="input-wrapper password-checkHide"
+                  id="confirm-password-box"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    position: 'relative',
+                    width: 1,
+                    margin: '20px 0px',
+                  }}
+                >
+                  <InputLabel htmlFor="confirmPassword" className="label__icon">
+                    <LockOpenIcon id="unlock-icon" />
+                  </InputLabel>
+                  <TextField
+                    required
+                    id="confirmPassword"
+                    label={t<string>('confirmPassword')}
+                    variant="standard"
+                    sx={{ width: 1 }}
+                    type={values.showPassword ? 'text' : 'password'}
+                    autoComplete="false"
+                    name="password"
+                    data-testid="confirm-password-element"
+                    value={confirmPassword}
+                    onChange={handleConfirmPasswordChange}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            className="password-toggle"
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {values.showPassword ? (
+                              <VisibilityOff />
+                            ) : (
+                              <Visibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </FormControl>
+                <FormControl
+                  className="input-wrapper password-checkHide"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    position: 'relative',
+                    width: 1,
+                    margin: '20px 0px',
+                  }}
+                >
+                  <a href="/forgot-password" className="forgot-password">
+                    {t<string>('forgotPassword')}
+                  </a>
+                </FormControl>
+                <FormControl
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    position: 'relative',
+                    width: 1,
+                    marginTop: '50px',
+                  }}
+                >
+                  <ColorButton
+                    variant="contained"
+                    id="btn-enable-style"
+                    type="submit"
+                    name="submit"
+                    disabled={open}
+                    className="customBtn-01"
+                  >
+                    {t<string>('done')}
+                  </ColorButton>
+                </FormControl>
+              </FormGroup>
             </form>
           </Box>
         </div>

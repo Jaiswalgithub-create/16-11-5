@@ -1,135 +1,109 @@
 @import '../abstract/variables.scss';
 
+.mode-text,
+.theme-toggle-button,
+.none {
+  display: none;
+}
+
 header {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
-  padding: 30px 0px;
-  .nav {
-    margin-right: 6%;
-    .nav-item {
+  padding: 30px 30px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  z-index: 99;
+  animation: animHeader 1s linear forwards;
+  animation-delay: 1s;
+  opacity: 0;
+  @keyframes animHeader {
+    0% {
+      opacity: 0;
+      top: -50vh;
+    }
+    100% {
+      opacity: 1;
+      top: 0vh;
+    }
+  }
+  .container {
+    width: 100%;
+    max-width: 1700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      display: inline-block;
+      max-width: 150px;
+    }
+    .navbar-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      .nav-link {
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 14px;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-decoration: none;
-        font-family: 'poppins', sans-serif;
+      justify-content: flex-end;
+      .item {
+        display: inline-block;
+        margin-left: 30px;
+        a {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 14px;
+          color: white;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          text-decoration: none;
+          font-family: 'poppins', sans-serif;
+        }
       }
     }
   }
-  .language-select {
-    min-width: 100px;
-    max-width: 100px;
-    width: 100px;
-    padding: 0.3rem 2.5rem 0.3rem 1rem !important;
-    border-radius: 4px;
-    background-position: right 1rem center;
-    margin-left: 30px;
-    cursor: pointer !important;
-    background-color: $white;
-    border: 2px solid $gray !important;
-    text-transform: uppercase;
-    color: $black;
-    font-weight: 700;
-    font-size: $sm-text;
-    outline: none !important;
-    box-shadow: none !important;
-    option {
-      padding: 10px;
-      color: $black !important;
-    }
-  }
 }
 
-header .logo img {
-  width: 150px;
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+  background: white !important;
+  color: black !important;
+  height: 35px;
+  text-transform: uppercase;
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline,
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border: 0 !important;
 }
 
-.mode-text {
-  display: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  padding: 10px 20px;
-  text-align: center;
-}
-
-.theme-toggle-button {
-  position: absolute;
-  top: 54px;
-  right: 143px;
-  z-index: 99;
-  button {
-    width: 35px;
-    height: 35px;
-    padding: 0;
-    border: 0;
-    background: none;
-    border: 1px solid #444;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover,
-    &:focus {
-      background: #d63548;
-      border-color: #d63548;
-    }
-    .bi {
-      font-size: 20px;
-      color: white;
-    }
-  }
-}
-@media (max-width: 1024px) {
-  .theme-toggle-button {
-    right: 100px;
-  }
-}
-@media (max-width: 768px) {
-  header a.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .theme-toggle-button {
-    right: 100px;
-  }
-}
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   header {
-    padding: 20px 0px;
-  }
-  header .logo img {
-    width: 80px;
-  }
-  header .language-select {
-    min-width: 80px;
-    max-width: 80px;
-    width: 80px;
-    padding: 0.3rem 1.5rem 0.3rem 1rem !important;
-  }
-  header {
-    .nav-link {
-      font-size: 12px;
+    background: $red;
+    padding-bottom: 20px;
+    position: relative;
+    .container {
+      max-width: 530px;
+      flex-direction: column;
+      .logo {
+        max-width: 100px;
+        margin-bottom: 20px;
+      }
+      .navbar-items {
+        .item {
+          margin-left: 15px;
+          a {
+            font-size: 12px;
+          }
+        }
+      }
     }
-    .nav {
-      margin-right: 7%;
+
+    .css-lu9khh-MuiSwitch-root,
+    .css-j204z7-MuiFormControlLabel-root {
+      margin-right: 0px;
     }
-  }
-  .theme-toggle-button {
-    top: 27px;
-    right: 14px;
-  }
-  .main-div {
-    border-top: 87px solid black;
   }
 }

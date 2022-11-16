@@ -15,11 +15,16 @@ import { useNavigate } from 'react-router-dom'
 // import {UserState} from "../../../redux/slices/userSlice"
 
 // Importing Material UI
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import { styled } from '@mui/material/styles'
-import Button, { ButtonProps } from '@mui/material/Button'
+import {
+  Box,
+  TextField,
+  InputLabel,
+  styled,
+  Button,
+  ButtonProps,
+  FormGroup,
+  FormControl,
+} from '@mui/material'
 import { purple } from '@mui/material/colors'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
@@ -28,7 +33,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 // Importing Images
-import Background from '../../../assets/images/login-bg.png'
+import Background from '../../../assets/images/login-bg.jpg'
 import ChartImg from '../../../assets/images/svg/Chart.svg'
 import PieChartImg from '../../../assets/images/svg/PieCharts.svg'
 import SalesImg from '../../../assets/images/svg/Sales.svg'
@@ -216,142 +221,143 @@ const Login = () => {
               <p className="sub__title">{t<string>('enterEmailAndPassword')}</p>
             </Box>
             <Box sx={{ width: 1 }} className="account__form__error">
-              <p className="error__msg">
-                {message &&
-                message == 'Login failed Incorrect email or password'
-                  ? t<string>('yourEmailIdPasswordNotMatch')
-                  : message}
-              </p>
+              <p className="error__msg">{message && message}</p>
             </Box>
             <Box sx={{ flexGrow: 1 }} className="account__form__body">
               <form onSubmit={handleSubmit} action="#" method="post">
-                <Box
-                  className="input-wrapper"
-                  id="email-box"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    position: 'relative',
-                    width: 1,
-                    margin: '20px 0px',
-                  }}
-                >
-                  <InputLabel
-                    htmlFor="username"
-                    id="label__icon"
-                    className="label__icon"
-                  >
-                    <MailOutlineIcon id="mail-icon" />
-                  </InputLabel>
-                  <TextField
-                    required
-                    id="username"
-                    label={t<string>('email')}
-                    variant="standard"
-                    sx={{ width: 1 }}
-                    type="email"
-                    // data-testid="email-element"
-                    inputProps={{ 'data-testid': 'email-element' }}
-                    name="email"
-                    onChange={handleChange}
-                    onInput={handleEmailChange}
-                    value={email}
-                  />
-                </Box>
-                {touched.email && errors.email && <p>{errors.email}</p>}
-                <Box
-                  className="input-wrapper password-checkHide"
-                  id="password-box"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    position: 'relative',
-                    width: 1,
-                    margin: '20px 0px',
-                  }}
-                >
-                  <InputLabel htmlFor="password" className="label__icon">
-                    <LockOpenIcon id="unlock-icon" />
-                  </InputLabel>
-                  <TextField
-                    required
-                    id="password"
-                    label={t<string>('password')}
-                    variant="standard"
-                    sx={{ width: 1 }}
-                    type={values.showPassword ? 'text' : 'password'}
-                    autoComplete="false"
-                    name="password"
-                    // data-testid="password-element"
-                    inputProps={{ 'data-testid': 'password-element' }}
-                    placeholder="Password"
-                    className="form-control input-custom"
-                    value={password}
-                    onInput={handlePasswordChange}
-                    onChange={handleChange}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            className="password-toggle"
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                          >
-                            {values.showPassword ? (
-                              <VisibilityOff />
-                            ) : (
-                              <Visibility />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
+                <FormGroup>
+                  <FormControl
+                    className="input-wrapper"
+                    id="email-box"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      position: 'relative',
+                      width: 1,
+                      margin: '20px 0px',
                     }}
-                  />
-                </Box>
-                {touched.password && errors.password && (
-                  <p>{errors.password}</p>
-                )}
-                <Box
-                  className="input-wrapper password-checkHide"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    position: 'relative',
-                    width: 1,
-                    margin: '20px 0px',
-                  }}
-                >
-                  <a
-                    href="/forgotpassword"
-                    id="forgot-password"
-                    className="forgot-password"
                   >
-                    {t<string>('forgotPassword')}
-                  </a>
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    position: 'relative',
-                    width: 1,
-                    marginTop: '50px',
-                  }}
-                >
-                  <ColorButton
-                    type="submit"
-                    id="btn-enable-style"
-                    data-testid="button-element"
-                    // inputProps={{ 'data-testid': 'button-element' }}
-                    disabled={open}
-                    variant="contained"
-                    className="customBtn-01"
+                    <InputLabel
+                      htmlFor="username"
+                      id="label__icon"
+                      className="label__icon"
+                    >
+                      <MailOutlineIcon id="mail-icon" />
+                    </InputLabel>
+                    <TextField
+                      required
+                      id="username"
+                      label={t<string>('email')}
+                      variant="standard"
+                      sx={{ width: 1 }}
+                      type="email"
+                      // data-testid="email-element"
+                      inputProps={{
+                        'data-testid': 'email-element',
+                        autoComplete: 'off',
+                      }}
+                      name="email"
+                      onChange={handleChange}
+                      onInput={handleEmailChange}
+                      value={email}
+                    />
+                  </FormControl>
+                  {touched.email && errors.email && <p>{errors.email}</p>}
+
+                  <FormControl
+                    className="input-wrapper password-checkHide"
+                    id="password-box"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      position: 'relative',
+                      width: 1,
+                      margin: '20px 0px',
+                    }}
                   >
-                    {t<string>('loginBtn')}
-                  </ColorButton>
-                </Box>
+                    <InputLabel htmlFor="password" className="label__icon">
+                      <LockOpenIcon id="unlock-icon" />
+                    </InputLabel>
+                    <TextField
+                      required
+                      id="password"
+                      label={t<string>('password')}
+                      variant="standard"
+                      sx={{ width: 1 }}
+                      type={values.showPassword ? 'text' : 'password'}
+                      autoComplete="false"
+                      name="password"
+                      // data-testid="password-element"
+                      inputProps={{ 'data-testid': 'password-element' }}
+                      // placeholder="Password"
+                      className="form-control input-custom"
+                      value={password}
+                      onInput={handlePasswordChange}
+                      onChange={handleChange}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              className="password-toggle"
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge="end"
+                            >
+                              {values.showPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </FormControl>
+                  {touched.password && errors.password && (
+                    <p>{errors.password}</p>
+                  )}
+                  <FormControl
+                    className="input-wrapper password-checkHide"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      position: 'relative',
+                      width: 1,
+                      margin: '20px 0px',
+                    }}
+                  >
+                    <a
+                      href="/forgot-password"
+                      id="forgot-password"
+                      className="forgot-password"
+                    >
+                      {t<string>('forgotPassword')}
+                    </a>
+                  </FormControl>
+                  <FormControl
+                    className="input-wrapper submitBtn"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      position: 'relative',
+                      width: 1,
+                      marginTop: '50px',
+                    }}
+                  >
+                    <ColorButton
+                      type="submit"
+                      id="btn-enable-style"
+                      data-testid="button-element"
+                      disabled={open}
+                      variant="contained"
+                      className="customBtn-01"
+                    >
+                      {t<string>('loginBtn')}
+                    </ColorButton>
+                  </FormControl>
+                </FormGroup>
               </form>
             </Box>
           </div>

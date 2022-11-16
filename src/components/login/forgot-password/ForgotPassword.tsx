@@ -3,15 +3,20 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { Email } from '../../../types/authType'
 import { forgotPassword } from '../../../redux/auth/authSlice'
 // Importing Material UI
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import { styled } from '@mui/material/styles'
-import Button, { ButtonProps } from '@mui/material/Button'
+import {
+  Box,
+  TextField,
+  InputLabel,
+  styled,
+  Button,
+  ButtonProps,
+  FormGroup,
+  FormControl,
+} from '@mui/material'
 import { purple } from '@mui/material/colors'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 // Importing Images
-import Background from '../../../assets/images/login-bg.png'
+import Background from '../../../assets/images/login-bg.jpg'
 import ChartImg from '../../../assets/images/svg/Chart.svg'
 import PieChartImg from '../../../assets/images/svg/PieCharts.svg'
 import SalesImg from '../../../assets/images/svg/Sales.svg'
@@ -119,48 +124,50 @@ const ForgotPassword = () => {
             className="account__form__body"
           >
             <form onSubmit={forgotPasswordSubmit} action="#" method="post">
-              <Box
-                className="input-wrapper"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  position: 'relative',
-                  width: 1,
-                  margin: '20px 0px',
-                }}
-              >
-                <InputLabel htmlFor="username" className="label__icon">
-                  <MailOutlineIcon />
-                </InputLabel>
-                <TextField
-                  required
-                  id="username"
-                  label="Enter your email ID"
-                  variant="standard"
-                  sx={{ width: 1 }}
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  position: 'relative',
-                  width: 1,
-                  marginTop: '50px',
-                }}
-              >
-                <ColorButton
-                  type="submit"
-                  variant="contained"
-                  className="customBtn-01"
+              <FormGroup>
+                <FormControl
+                  className="input-wrapper success"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    position: 'relative',
+                    width: 1,
+                    margin: '20px 0px',
+                  }}
                 >
-                  GET LINK
-                </ColorButton>
-              </Box>
+                  <InputLabel htmlFor="username" className="label__icon">
+                    <MailOutlineIcon />
+                  </InputLabel>
+                  <TextField
+                    required
+                    id="username"
+                    label="Enter your email ID"
+                    variant="standard"
+                    sx={{ width: 1 }}
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </FormControl>
+                <FormControl
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    position: 'relative',
+                    width: 1,
+                    marginTop: '50px',
+                  }}
+                >
+                  <ColorButton
+                    type="submit"
+                    variant="contained"
+                    className="customBtn-01"
+                  >
+                    GET LINK
+                  </ColorButton>
+                </FormControl>
+              </FormGroup>
             </form>
           </Box>
         </div>
